@@ -22,7 +22,7 @@ function varargout = NumericalMethods(varargin)
 
 % Edit the above text to modify the response to help NumericalMethods
 
-% Last Modified by GUIDE v2.5 27-Apr-2017 02:49:37
+% Last Modified by GUIDE v2.5 27-Apr-2017 03:22:19
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -211,12 +211,60 @@ set(handles.welcomeuipanel,'visible','on')
 
 % --- Executes on button press in ch1_run.
 function ch1_run_Callback(hObject, eventdata, handles)
-% hObject    handle to ch1_run (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-
+    a=get(handles.v_a, 'string')
+    if isempty(a) 
+        a=''
+    end
+    b=get(handles.v_b, 'string')
+    if isempty(b) 
+        b=''
+    end
+    c=get(handles.v_c, 'string')
+    if isempty(c) 
+        c=''
+    end
+    d=get(handles.v_d, 'string')
+    if isempty(d) 
+        d='' 
+    end
+    e=get(handles.v_e, 'string')
+    if isempty(e) 
+        e=''
+    end
+    f=get(handles.v_f, 'string')
+    if isempty(f) 
+        f=''
+    end
+    
+    e_a=get(handles.e_a, 'string')
+    e_b=get(handles.e_b, 'string')
+    e_c=get(handles.e_c, 'string')
+    e_d=get(handles.e_d, 'string')
+    e_e=get(handles.e_e, 'string')
+    e_f=get(handles.e_f, 'string')
+    
+    eq = get(handles.ch1_eq, 'string')
+    
+    [ ae, re, ae_a, re_a, ae_b, re_b, ae_c, re_c, ae_d, re_d, ae_e, re_e, ae_f, re_f] = getErrors(eq, a, e_a, b, e_b, c, e_c, d, e_d, e, e_e, f, e_f, 'symmetric')
+    set(handles.ae_a, 'string', char(ae_a));
+    set(handles.ae_b, 'string', char(ae_b));
+    set(handles.ae_c, 'string', char(ae_c));
+    set(handles.ae_d, 'string', char(ae_d));
+    set(handles.ae_e, 'string', char(ae_e));
+    set(handles.ae_f, 'string', char(ae_f));
+   
+    set(handles.re_a, 'string', char(re_a) );
+    set(handles.re_b, 'string', char(re_b) );
+    set(handles.re_c, 'string', char(re_c));
+    set(handles.re_d, 'string', char(re_d));
+    set(handles.re_e, 'string', char(re_e));
+    set(handles.re_f, 'string', char(re_f));
+   
+    set(handles.ch1_re, 'string', char(re));
+    set(handles.ch1_ae, 'string', char(ae));
 % --- Executes during object creation, after setting all properties.
+
+
 function headeraxes_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to headeraxes (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1426,18 +1474,18 @@ end
 
 
 
-function ra_f_Callback(hObject, eventdata, handles)
-% hObject    handle to ra_f (see GCBO)
+function re_f_Callback(hObject, eventdata, handles)
+% hObject    handle to re_f (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of ra_f as text
-%        str2double(get(hObject,'String')) returns contents of ra_f as a double
+% Hints: get(hObject,'String') returns contents of re_f as text
+%        str2double(get(hObject,'String')) returns contents of re_f as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function ra_f_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to ra_f (see GCBO)
+function re_f_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to re_f (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1449,18 +1497,18 @@ end
 
 
 
-function ra_e_Callback(hObject, eventdata, handles)
-% hObject    handle to ra_e (see GCBO)
+function re_e_Callback(hObject, eventdata, handles)
+% hObject    handle to re_e (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of ra_e as text
-%        str2double(get(hObject,'String')) returns contents of ra_e as a double
+% Hints: get(hObject,'String') returns contents of re_e as text
+%        str2double(get(hObject,'String')) returns contents of re_e as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function ra_e_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to ra_e (see GCBO)
+function re_e_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to re_e (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1495,18 +1543,18 @@ end
 
 
 
-function ra_d_Callback(hObject, eventdata, handles)
-% hObject    handle to ra_d (see GCBO)
+function re_d_Callback(hObject, eventdata, handles)
+% hObject    handle to re_d (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of ra_d as text
-%        str2double(get(hObject,'String')) returns contents of ra_d as a double
+% Hints: get(hObject,'String') returns contents of re_d as text
+%        str2double(get(hObject,'String')) returns contents of re_d as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function ra_d_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to ra_d (see GCBO)
+function re_d_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to re_d (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1518,18 +1566,18 @@ end
 
 
 
-function ra_c_Callback(hObject, eventdata, handles)
-% hObject    handle to ra_c (see GCBO)
+function re_c_Callback(hObject, eventdata, handles)
+% hObject    handle to re_c (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of ra_c as text
-%        str2double(get(hObject,'String')) returns contents of ra_c as a double
+% Hints: get(hObject,'String') returns contents of re_c as text
+%        str2double(get(hObject,'String')) returns contents of re_c as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function ra_c_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to ra_c (see GCBO)
+function re_c_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to re_c (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1541,18 +1589,18 @@ end
 
 
 
-function ra_b_Callback(hObject, eventdata, handles)
-% hObject    handle to ra_b (see GCBO)
+function re_b_Callback(hObject, eventdata, handles)
+% hObject    handle to re_b (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of ra_b as text
-%        str2double(get(hObject,'String')) returns contents of ra_b as a double
+% Hints: get(hObject,'String') returns contents of re_b as text
+%        str2double(get(hObject,'String')) returns contents of re_b as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function ra_b_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to ra_b (see GCBO)
+function re_b_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to re_b (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -1809,12 +1857,7 @@ function pushbutton12_Callback(hObject, eventdata, handles)
 
 % --- Executes on key press with focus on ch1_run and none of its controls.
 function ch1_run_KeyPressFcn(hObject, eventdata, handles)
-% hObject    handle to ch1_run (see GCBO)
-% eventdata  structure with the following fields (see UICONTROL)
-%	Key: name of the key that was pressed, in lower case
-%	Character: character interpretation of the key(s) that was pressed
-%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
-% handles    structure with handles and user data (see GUIDATA)
+    a=get(v_a, 'string')
 
 
 % --------------------------------------------------------------------
