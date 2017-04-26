@@ -22,11 +22,7 @@ function varargout = NumericalMethods(varargin)
 
 % Edit the above text to modify the response to help NumericalMethods
 
-<<<<<<< HEAD
 % Last Modified by GUIDE v2.5 26-Apr-2017 22:42:05
-=======
-% Last Modified by GUIDE v2.5 27-Apr-2017 02:49:37
->>>>>>> origin/master
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1810,8 +1806,6 @@ function pushbutton12_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
-<<<<<<< HEAD
 % --- Executes when selected object is changed in uipanel33.
 function uipanel33_SelectionChangeFcn(hObject, eventdata, handles)
 % hObject    handle to the selected object in uipanel33 
@@ -2306,7 +2300,7 @@ function edit105_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-=======
+
 % --- Executes on key press with focus on ch1_run and none of its controls.
 function ch1_run_KeyPressFcn(hObject, eventdata, handles)
 % hObject    handle to ch1_run (see GCBO)
@@ -2322,4 +2316,3 @@ function Untitled_1_Callback(hObject, eventdata, handles)
 % hObject    handle to Untitled_1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
->>>>>>> origin/master
