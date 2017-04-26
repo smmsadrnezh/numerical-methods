@@ -22,7 +22,7 @@ function varargout = NumericalMethods(varargin)
 
 % Edit the above text to modify the response to help NumericalMethods
 
-% Last Modified by GUIDE v2.5 26-Apr-2017 21:50:12
+% Last Modified by GUIDE v2.5 26-Apr-2017 22:02:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1791,3 +1791,17 @@ function edit93_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in pushbutton13.
+function pushbutton13_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton13 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton12.
+function pushbutton12_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton12 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
