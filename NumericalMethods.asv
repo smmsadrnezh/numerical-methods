@@ -1823,47 +1823,32 @@ switch get(get(handles.uipanel33,'SelectedObject'),'String')
                 
                 set(handles.uipanel37,'visible','off')
                 set(handles.uipanel35,'visible','off')
-                set(handles.uipanel32,'visible','on')
+                set(handles.uipanel37,'visible','off')
             case 'Curve Fitting 2'
-                set(handles.uipanel31,'visible','on')
-                set(handles.uipanel34,'visible','off')
-                set(handles.uipanel36,'visible','off')
-                
-                set(handles.uipanel37,'visible','off')
-                set(handles.uipanel35,'visible','off')
-                set(handles.uipanel32,'visible','on')
+                set(handles.uipanel14,'visible','off')
+                set(handles.uipanel17,'visible','on')
+                set(handles.uipanel20,'visible','off')
+                set(handles.uipanel19,'visible','off')
             case 'Curve Fitting 3'
-                set(handles.uipanel31,'visible','on')
-                set(handles.uipanel34,'visible','off')
-                set(handles.uipanel36,'visible','off')
-                
-                set(handles.uipanel37,'visible','off')
-                set(handles.uipanel35,'visible','off')
-                set(handles.uipanel32,'visible','on')
+                set(handles.uipanel14,'visible','on')
+                set(handles.uipanel17,'visible','off')
+                set(handles.uipanel20,'visible','off')
+                set(handles.uipanel19,'visible','off')
             case 'Curve Fitting 4'
-                set(handles.uipanel31,'visible','on')
-                set(handles.uipanel34,'visible','off')
-                set(handles.uipanel36,'visible','off')
-                
-                set(handles.uipanel37,'visible','off')
-                set(handles.uipanel35,'visible','off')
-                set(handles.uipanel32,'visible','on')
+                set(handles.uipanel14,'visible','on')
+                set(handles.uipanel17,'visible','off')
+                set(handles.uipanel20,'visible','off')
+                set(handles.uipanel19,'visible','off')
             case 'Curve Fitting 5'
-                set(handles.uipanel31,'visible','off')
-                set(handles.uipanel34,'visible','on')
-                set(handles.uipanel36,'visible','off')
-                
-                set(handles.uipanel37,'visible','off')
-                set(handles.uipanel35,'visible','on')
-                set(handles.uipanel32,'visible','off')
+                set(handles.uipanel14,'visible','on')
+                set(handles.uipanel17,'visible','off')
+                set(handles.uipanel20,'visible','off')
+                set(handles.uipanel19,'visible','off')
             case 'Curve Fitting All'
-                set(handles.uipanel31,'visible','off')
-                set(handles.uipanel34,'visible','off')
-                set(handles.uipanel36,'visible','on')
-                
-                set(handles.uipanel37,'visible','on')
-                set(handles.uipanel35,'visible','off')
-                set(handles.uipanel32,'visible','off')
+                set(handles.uipanel14,'visible','off')
+                set(handles.uipanel17,'visible','off')
+                set(handles.uipanel20,'visible','on')
+                set(handles.uipanel19,'visible','off')
             otherwise, res = '';
 end
 
