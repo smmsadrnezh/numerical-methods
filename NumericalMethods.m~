@@ -22,7 +22,7 @@ function varargout = NumericalMethods(varargin)
 
 % Edit the above text to modify the response to help NumericalMethods
 
-% Last Modified by GUIDE v2.5 27-Apr-2017 03:22:19
+% Last Modified by GUIDE v2.5 27-Apr-2017 04:16:28
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -211,59 +211,73 @@ set(handles.welcomeuipanel,'visible','on')
 
 % --- Executes on button press in ch1_run.
 function ch1_run_Callback(hObject, eventdata, handles)
-    a=get(handles.v_a, 'string')
+    a=get(handles.v_a, 'string');
     if isempty(a) 
-        a=''
+        a='';
     end
-    b=get(handles.v_b, 'string')
+    b=get(handles.v_b, 'string');
     if isempty(b) 
-        b=''
+        b='';
     end
-    c=get(handles.v_c, 'string')
+    c=get(handles.v_c, 'string');
     if isempty(c) 
-        c=''
+        c='';
     end
-    d=get(handles.v_d, 'string')
+    d=get(handles.v_d, 'string');
     if isempty(d) 
-        d='' 
+        d=''; 
     end
-    e=get(handles.v_e, 'string')
+    e=get(handles.v_e, 'string');
     if isempty(e) 
-        e=''
+        e='';
     end
-    f=get(handles.v_f, 'string')
+    f=get(handles.v_f, 'string');
     if isempty(f) 
-        f=''
+        f='';
     end
     
-    e_a=get(handles.e_a, 'string')
-    if isempty(a) 
-        a=''
+    e_a=get(handles.e_a, 'string');
+    if isempty(e_a) 
+        e_a='';
     end
-    e_b=get(handles.e_b, 'string')
+    e_b=get(handles.e_b, 'string');
     if isempty(e_b) 
-        e_b=''
+        e_b='';
     end
-    e_c=get(handles.e_c, 'string')
+    e_c=get(handles.e_c, 'string');
     if isempty(e_c) 
-        e_c=''
+        e_c='';
     end
-    e_d=get(handles.e_d, 'string')
+    e_d=get(handles.e_d, 'string');
     if isempty(e_d) 
-        e_d=''
+        e_d='';
     end
-    e_e=get(handles.e_e, 'string')
+    e_e=get(handles.e_e, 'string');
     if isempty(e_e) 
-        e_e=''
+        e_e='';
     end
-    e_f=get(handles.e_f, 'string')
+    e_f=get(handles.e_f, 'string');
     if isempty(e_f) 
-        e_f=''
+        e_f='';
     end
     
-    eq = get(handles.ch1_eq, 'string')
+    eq = get(handles.ch1_eq, 'string');
     
-    [ ae, re, ae_a, re_a, ae_b, re_b, ae_c, re_c, ae_d, re_d, ae_e, re_e, ae_f, re_f] = getErrors(eq, a, e_a, b, e_b, c, e_c, d, e_d, e, e_e, f, e_f, 'symmetric')
+    
+    if (get(handles.ch1_chop,'Value') == 0 && get(handles.ch1_sym,'Value') == 0 )
+    %user did not select any radio button, then do this
+    else
+        %do this if a user selected a radio button
+          switch get(get(handles.roundPanel,'SelectedObject'),'Tag')
+              case 'ch1_sym',  RM= 'symmetric';
+              case 'ch1_chop',  RM = 'chopping';
+          end
+    end
+    RV = get(handles.ch1_rd, 'string');
+    disp(RM)
+    
+    [ ae, re, ae_a, re_a, ae_b, re_b, ae_c, re_c, ae_d, re_d, ae_e, re_e, ae_f, re_f] = getErrors(eq, a, e_a, b, e_b, c, e_c, d, e_d, e, e_e, f, e_f, RV ,RM)
+    
     set(handles.ae_a, 'string', char(ae_a));
     set(handles.ae_b, 'string', char(ae_b));
     set(handles.ae_c, 'string', char(ae_c));
@@ -272,7 +286,7 @@ function ch1_run_Callback(hObject, eventdata, handles)
     set(handles.ae_f, 'string', char(ae_f));
    
     set(handles.re_a, 'string', char(re_a) );
-    set(handles.re_b, 'string', char(re_b) );
+    set(handles.re_bb, 'string', char(re_b) );
     set(handles.re_c, 'string', char(re_c));
     set(handles.re_d, 'string', char(re_d));
     set(handles.re_e, 'string', char(re_e));
@@ -280,6 +294,10 @@ function ch1_run_Callback(hObject, eventdata, handles)
    
     set(handles.ch1_re, 'string', char(re));
     set(handles.ch1_ae, 'string', char(ae));
+    
+    disp('--------------')
+    disp(char(ae_a))
+    
 % --- Executes during object creation, after setting all properties.
 
 
@@ -1608,18 +1626,18 @@ end
 
 
 
-function re_b_Callback(hObject, eventdata, handles)
-% hObject    handle to re_b (see GCBO)
+function re_bb_Callback(hObject, eventdata, handles)
+% hObject    handle to re_bb (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of re_b as text
-%        str2double(get(hObject,'String')) returns contents of re_b as a double
+% Hints: get(hObject,'String') returns contents of re_bb as text
+%        str2double(get(hObject,'String')) returns contents of re_bb as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function re_b_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to re_b (see GCBO)
+function re_bb_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to re_bb (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
