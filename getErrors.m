@@ -1,5 +1,4 @@
-function [absoluteError, relativeError, absoluteErrorOfA, relativeErrorOfA, absoluteErrorOfB, relativeErrorOfB, absoluteErrorOfC, relativeErrorOfC, absoluteErrorOfD, relativeErrorOfD, absoluteErrorOfE, relativeErrorOfE, absoluteErrorOfF, relativeErrorOfF ] = getErrors( equation, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundMethod)
-    roundVal = 4; 
+function [absoluteError, relativeError, absoluteErrorOfA, relativeErrorOfA, absoluteErrorOfB, relativeErrorOfB, absoluteErrorOfC, relativeErrorOfC, absoluteErrorOfD, relativeErrorOfD, absoluteErrorOfE, relativeErrorOfE, absoluteErrorOfF, relativeErrorOfF ] = getErrors( equation, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundVal, roundMethod)
     roundVal = 0.1^roundVal;
    F = addError(equation);
     e_a=errorA;
