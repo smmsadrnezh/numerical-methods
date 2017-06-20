@@ -26,4 +26,3 @@ end
 digits(old);
 
 end
-disp("Hello World");

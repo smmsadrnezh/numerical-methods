@@ -6,7 +6,7 @@ func_Y = @(y) log(y);
 func_curve = @(x, a, b) (a).*(exp(b.*x));
 
 old = digits;
-digits = mantissa;
+digits(mantissa);
 
 a = exp(get_a_0(X, func_Y(Y)));
 b = get_a_1(X, func_Y(Y));
@@ -24,9 +24,6 @@ if nargin > 4
     Calc_Y = func_curve(Calc_X, a, b);
     plot(Calc_X, Calc_Y,'b',X,Y,'or')
 end
-
-
-digits(mantissa);
 
 digits(old);
 
