@@ -1,4 +1,4 @@
-﻿function [X_out, Y] = ch2_function_sampling(equation, X, mantissa, numofpoints)
+function [X_out, Y] = ch2_function_sampling(equation, X, mantissa, numofpoints)
 
 old = digits;
 digits(mantissa);

@@ -1,4 +1,4 @@
-﻿function P = ch2_intp_lagrange_method(X,Y, mantissa)
+function P = ch2_intp_lagrange_method(X,Y, mantissa, point_to_see)
 
 old_digits = digits;
 digits(mantissa);
@@ -17,7 +17,10 @@ end
 
 P = Y*pvals;
 
-ch2_draw_polynomial(P, X, Y)
+ch2_draw_polynomial(P, X, Y);
+Polynomial_value = polyval(P,point_to_see);
+disp( sprintf( 'The value of the polynomial at %d is:', point_to_see) )
+disp(Polynomial_value)
 
 digits(old_digits);
 %symbolic form of polynomial

@@ -1,4 +1,4 @@
-﻿function  ch2_curve_fitting_all(X, Y, mantissa)
+function  ch2_curve_fitting_all(X, Y, mantissa, point_to_see)
 
 func_curve_1 = @(x, a, b) (a).*(exp(b.*x));
 func_curve_2 = @(x, a, b) (a.*(log(x))) + b;
@@ -33,22 +33,33 @@ if le > error_5
 end
 
 if meth == 1
+    disp( sprintf( 'The value of the polynomial at %d is:', point_to_see) )
+    disp(func_curve(point_to_see, a, b))
     Calc_X = [min(X):0.1:max(X)];
     Calc_Y = func_curve_1(Calc_X, a_1, b_1);
     plot(Calc_X, Calc_Y,'b',X,Y,'or')
 elseif meth == 2
+    disp( sprintf( 'The value of the polynomial at %d is:', point_to_see) )
+    disp(func_curve(point_to_see, a, b))
     Calc_X = [min(X):0.1:max(X)];
     Calc_Y = func_curve_2(Calc_X, a_2, b_2);
     plot(Calc_X, Calc_Y,'b',X,Y,'or')
 elseif meth == 3
+    disp( sprintf( 'The value of the polynomial at %d is:', point_to_see) )
+    disp(func_curve(point_to_see, a, b))
     Calc_X = [min(X):0.1:max(X)];
     Calc_Y = func_curve_3(Calc_X, a_3, b_3);
     plot(Calc_X, Calc_Y,'b',X,Y,'or')
 elseif meth == 4
+    disp( sprintf( 'The value of the polynomial at %d is:', point_to_see) )
+    disp(func_curve(point_to_see, a, b))
     Calc_X = [min(X):0.1:max(X)];
     Calc_Y = func_curve_4(Calc_X, a_4, b_4);
     plot(Calc_X, Calc_Y,'b',X,Y,'or')
 elseif meth == 5
+    Polynomial_value = polyval(polynomial_coeff_5,point_to_see);
+    disp( sprintf( 'The value of the polynomial at %d is:', point_to_see) )
+    disp(Polynomial_value)
     Calc_X = [min(X):0.1:max(X)];
     plot(Calc_X, polyval(polynomial_coeff_5,Calc_X),'b',X,Y,'or')
 end

@@ -22,7 +22,7 @@ function varargout = NumericalMethods(varargin)
 
 % Edit the above text to modify the response to help NumericalMethods
 
-% Last Modified by GUIDE v2.5 07-Jun-2017 14:56:21
+% Last Modified by GUIDE v2.5 07-Jun-2017 18:22:02
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1793,11 +1793,51 @@ function pushbutton13_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
+% CHAPTER 2 RUN
 % --- Executes on button press in pushbutton12.
 function pushbutton12_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton12 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+% Part 1
+edit1=str2num(get(handles.edit1, 'string'));
+edit2=str2num(get(handles.edit2, 'string'));
+edit3=str2num(get(handles.edit3, 'string'));
+edit4=str2num(get(handles.edit4, 'string'));
+
+% Part 2
+edit20=str2num(get(handles.edit20, 'string'));
+edit21=str2num(get(handles.edit21, 'string'));
+edit22=str2num(get(handles.edit22, 'string'));
+edit23=str2num(get(handles.edit23, 'string'));
+
+% Part 3
+edit24=str2num(get(handles.edit24, 'string'));
+edit25=str2num(get(handles.edit25, 'string'));
+edit27=str2num(get(handles.edit27, 'string'));
+
+% Part 4
+edit13=str2num(get(handles.edit13, 'string'));
+edit14=str2num(get(handles.edit14, 'string'));
+edit16=str2num(get(handles.edit16, 'string'));
+
+switch get(get(handles.uipanel12,'SelectedObject'),'String')
+            case 'Fixed Point'
+
+            case 'NewtonRaphson'
+
+            case 'Bisection'
+
+            case 'Secant'
+
+            case 'False Position'
+
+            case 'Generalized NewtonRaphson'
+end
+
+set(handles.edit8, 'string', char(edit13));
+
 
 % --- Executes when selected object is changed in uipanel33.
 function uipanel33_SelectionChangeFcn(hObject, eventdata, handles)
@@ -1905,13 +1945,53 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
+% CHAPTER 3 RUN
 % --- Executes on button press in pushbutton14.
 function pushbutton14_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton14 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+% Part 1
+edit109=str2num(get(handles.edit109, 'string'));
+edit110=str2num(get(handles.edit110, 'string'));
+edit112=str2num(get(handles.edit112, 'string'));
 
+% Part 2
+edit101=str2num(get(handles.edit101, 'string'));
+edit102=str2num(get(handles.edit102, 'string'));
+edit103=str2num(get(handles.edit103, 'string'));
+edit104=str2num(get(handles.edit104, 'string'));
+edit105=str2num(get(handles.edit105, 'string'));
+
+% Part 3
+edit94=str2num(get(handles.edit94, 'string'));
+edit95=str2num(get(handles.edit95, 'string'));
+edit96=str2num(get(handles.edit96, 'string'));
+edit97=str2num(get(handles.edit97, 'string'));
+
+switch get(get(handles.uipanel33,'SelectedObject'),'String')
+            case '1'
+
+            case '2'
+
+            case '3'
+
+            case '4'
+
+            case '5'
+
+            case 'All'
+
+            case 'Lagrange'
+
+            case 'Newton Divided Difference'
+
+            case 'Forward, Backward & Central Diff'
+
+            otherwise, res = '';
+end
+
+set(handles.edit8, 'string', char(edit13));
 
 
 function edit99_Callback(hObject, eventdata, handles)
@@ -2613,13 +2693,44 @@ function edit92_CreateFcn(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
-
+% CHAPTER 4 RUN
 % --- Executes on button press in pushbutton20.
 function pushbutton20_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton20 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+% Part 1
+edit143=str2num(get(handles.edit143, 'string'));
+edit144=str2num(get(handles.edit144, 'string'));
+edit145=str2num(get(handles.edit145, 'string'));
+edit146=str2num(get(handles.edit146, 'string'));
+edit147=str2num(get(handles.edit147, 'string'));
+edit148=str2num(get(handles.edit148, 'string'));
 
+% Part 2
+edit128=str2num(get(handles.edit128, 'string'));
+edit129=str2num(get(handles.edit129, 'string'));
+edit130=str2num(get(handles.edit130, 'string'));
+edit131=str2num(get(handles.edit131, 'string'));
+edit132=str2num(get(handles.edit132, 'string'));
+
+switch get(get(handles.uipanel38,'SelectedObject'),'String')
+            case 'Trapezodial'
+
+            case 'Simpson'
+
+            case 'Romberg'
+
+            case 'Gaussleg'
+
+            case 'Diff Main'
+
+            case 'Diff Richardson'
+
+            otherwise, res = '';
+end
+
+set(handles.edit8, 'string', char(edit13));
 
 
 function edit128_Callback(hObject, eventdata, handles)
@@ -3057,20 +3168,155 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
+% CHAPTER 6 RUN
 % --- Executes on button press in pushbutton21.
 function pushbutton21_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton21 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+% Part 1
+edit158=str2num(get(handles.edit158, 'string'));
+edit159=str2num(get(handles.edit159, 'string'));
 
+% Part 2
+edit161=str2num(get(handles.edit161, 'string'));
 
+% Part 3
+edit149=str2num(get(handles.edit149, 'string'));
+edit152=str2num(get(handles.edit152, 'string'));
+
+% Part 4
+edit153=str2num(get(handles.edit153, 'string'));
+edit154=str2num(get(handles.edit154, 'string'));
+edit155=str2num(get(handles.edit155, 'string'));
+
+% Part 5
+edit186=str2num(get(handles.edit186, 'string'));
+edit185=str2num(get(handles.edit185, 'string'));
+edit184=str2num(get(handles.edit184, 'string'));
+edit183=str2num(get(handles.edit183, 'string'));
+
+switch get(get(handles.uipanel39,'SelectedObject'),'String')
+            case 'Cholesky'
+
+            case 'Cramer'
+
+            case 'Doolittle'
+
+            case 'Eigen'
+
+            case 'Gauss Elimination'
+
+            case 'Power Method'
+
+            case 'Jacobi'
+
+            case 'Gauss Seidel'
+
+            otherwise, res = '';
+end
+
+set(handles.text183, 'string', char(edit13));
+
+% CHAPTER 5 RUN
 % --- Executes on button press in pushbutton22.
 function pushbutton22_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton22 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+% Part 1
+edit162=str2num(get(handles.edit162, 'string'));
+edit163=str2num(get(handles.edit163, 'string'));
+edit164=str2num(get(handles.edit164, 'string'));
+edit165=str2num(get(handles.edit165, 'string'));
+edit166=str2num(get(handles.edit166, 'string'));
 
+
+% Part 2
+edit167=str2num(get(handles.edit167, 'string'));
+edit168=str2num(get(handles.edit168, 'string'));
+edit169=str2num(get(handles.edit169, 'string'));
+edit170=str2num(get(handles.edit170, 'string'));
+edit171=str2num(get(handles.edit171, 'string'));
+edit172=str2num(get(handles.edit172, 'string'));
+
+% Part 3
+edit173=str2num(get(handles.edit173, 'string'));
+edit174=str2num(get(handles.edit174, 'string'));
+edit175=str2num(get(handles.edit175, 'string'));
+edit176=str2num(get(handles.edit176, 'string'));
+edit177=str2num(get(handles.edit177, 'string'));
+edit178=str2num(get(handles.edit178, 'string'));
+edit179=str2num(get(handles.edit179, 'string'));
+
+switch get(get(handles.uipanel40,'SelectedObject'),'String')
+            case 'Taylor'
+                set(handles.uipanel61,'visible','on')
+                set(handles.uipanel60,'visible','off')
+                set(handles.uipanel62,'visible','off')
+                
+                set(handles.uipanel63,'visible','on')
+                set(handles.uipanel67,'visible','off')
+            case 'Euler'
+                set(handles.uipanel61,'visible','off')
+                set(handles.uipanel60,'visible','on')
+                set(handles.uipanel62,'visible','off')
+                
+                set(handles.uipanel63,'visible','on')
+                set(handles.uipanel67,'visible','off')
+            case 'Modified Euler'
+                set(handles.uipanel61,'visible','off')
+                set(handles.uipanel60,'visible','on')
+                set(handles.uipanel62,'visible','off')
+                
+                set(handles.uipanel63,'visible','on')
+                set(handles.uipanel67,'visible','off')
+            case 'Mid Point'
+                set(handles.uipanel61,'visible','off')
+                set(handles.uipanel60,'visible','on')
+                set(handles.uipanel62,'visible','off')
+                
+                set(handles.uipanel63,'visible','on')
+                set(handles.uipanel67,'visible','off')
+            case 'Runge Kuttah 3rd order'
+                set(handles.uipanel61,'visible','off')
+                set(handles.uipanel60,'visible','on')
+                set(handles.uipanel62,'visible','off')
+                
+                set(handles.uipanel63,'visible','on')
+                set(handles.uipanel67,'visible','off')
+            case 'Runge Kuttah 4th order'
+                set(handles.uipanel61,'visible','off')
+                set(handles.uipanel60,'visible','on')
+                set(handles.uipanel62,'visible','off')
+                
+                set(handles.uipanel63,'visible','on')
+                set(handles.uipanel67,'visible','off')
+            case 'Adams Moulton'
+                set(handles.uipanel61,'visible','off')
+                set(handles.uipanel60,'visible','on')
+                set(handles.uipanel62,'visible','off')
+                
+                set(handles.uipanel63,'visible','on')
+                set(handles.uipanel67,'visible','off')
+            case 'Euler Differential Equation'
+                set(handles.uipanel61,'visible','off')
+                set(handles.uipanel60,'visible','off')
+                set(handles.uipanel62,'visible','on')
+                
+                set(handles.uipanel63,'visible','off')
+                set(handles.uipanel67,'visible','on')
+            case 'Runge Kutta Diff Equation'
+                set(handles.uipanel61,'visible','off')
+                set(handles.uipanel60,'visible','off')
+                set(handles.uipanel62,'visible','on')
+                
+                set(handles.uipanel63,'visible','off')
+                set(handles.uipanel67,'visible','on')
+            otherwise, res = '';
+end
+
+set(handles.text207, 'string', char(edit13));
 
 
 function edit167_Callback(hObject, eventdata, handles)
@@ -3747,7 +3993,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-
+% CHAPTER 1 RUN
 % --- Executes on button press in runbutton.
 function runbutton_Callback(hObject, eventdata, handles)
 % hObject    handle to runbutton (see GCBO)
@@ -3819,9 +4065,22 @@ function runbutton_Callback(hObject, eventdata, handles)
     eq = get(handles.edit78, 'string');
     RV = str2num(get(handles.edit93, 'string'));
     
-    % [ ae, re, ae_a, re_a, ae_b, re_b, ae_c, re_c, ae_d, re_d, ae_e, re_e, ae_f, re_f] = getErrors(eq, a, e_a, b, e_b, c, e_c, d, e_d, e, e_e, f, e_f, RV ,RM)
+[ae, re, ae_a, re_a, ae_b, re_b, ae_c, re_c, ae_d, re_d, ae_e, re_e, ae_f, re_f ]=getErrors(eq, a, e_a, b, e_b, c, e_c, d, e_d, e, e_e, ff, e_f, RV ,RM)
     
-    set(handles.edit87, 'string', char(ff));
+    set(handles.edit92, 'String', char(ae + 0.0));
+    set(handles.edit91, 'String', char(re+ 0.0));
+    set(handles.edit87, 'String', char(ae_a+ 0.0));
+    set(handles.edit81, 'String', char(re_a+ 0.0));
+    set(handles.edit90, 'String', char(ae_b+ 0.0));
+    set(handles.edit84, 'String', char(re_b+ 0.0));
+    set(handles.edit89, 'String', char(ae_c+ 0.0));
+    set(handles.edit83, 'String', char(re_c+ 0.0));
+    set(handles.edit88, 'String', char(ae_d+ 0.0));
+    set(handles.edit82, 'String', char(re_d+ 0.0));
+    set(handles.edit86, 'String', char(ae_e+ 0.0));
+    set(handles.edit80, 'String', char(re_e+ 0.0));
+    set(handles.edit85, 'String', char(ae_f+ 0.0));
+    set(handles.edit79, 'String', char(re_f+ 0.0));
 
 
 function edit50_Callback(hObject, eventdata, handles)

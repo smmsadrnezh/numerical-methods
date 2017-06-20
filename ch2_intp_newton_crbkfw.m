@@ -1,4 +1,4 @@
-﻿function [dFBackward, dFCentral, dFForward] = ch2_intp_newton_crbkfw(X, Y, mantissa);
+function [dFBackward, dFCentral, dFForward] = ch2_intp_newton_crbkfw(X, Y, mantissa)
 
 old = digits;
 digits(mantissa);
