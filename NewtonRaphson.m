@@ -37,5 +37,4 @@ function res = NewtonRaphson(equation,x0, maxError)
     
     plotTheGraph(equation , result , a - 1 , a + 1);
     
-    
 end

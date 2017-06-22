@@ -1,6 +1,74 @@
-function [absoluteError, relativeError, absoluteErrorOfA, relativeErrorOfA, absoluteErrorOfB, relativeErrorOfB, absoluteErrorOfC, relativeErrorOfC, absoluteErrorOfD, relativeErrorOfD, absoluteErrorOfE, relativeErrorOfE, absoluteErrorOfF, relativeErrorOfF ] = getErrors( equation, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundVal, roundMethod)
+function [absoluteError, relativeError, absoluteErrorOfA, relativeErrorOfA, absoluteErrorOfB, relativeErrorOfB, absoluteErrorOfC, relativeErrorOfC, absoluteErrorOfD, relativeErrorOfD, absoluteErrorOfE, relativeErrorOfE, absoluteErrorOfF, relativeErrorOfF, steps] = getErrors( equation, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundVal, roundMethod)
     roundVal = 0.1^roundVal;
-   F = addError(equation);
+    [absoluteError, relativeError, absoluteErrorOfA, relativeErrorOfA, absoluteErrorOfB, relativeErrorOfB, absoluteErrorOfC, relativeErrorOfC, absoluteErrorOfD, relativeErrorOfD, absoluteErrorOfE, relativeErrorOfE, absoluteErrorOfF, relativeErrorOfF ] = MRecursive( equation, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundVal, roundMethod);
+    steps = SReq(equation, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundVal, roundMethod);
+end
+
+function [steps] = SReq( equation, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundVal, roundMethod)
+    [e1,e2] = breakDown(equation);
+    single = [strcat('absolute error of:',equation, ' equals: ', MRecursive( equation, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundVal, roundMethod), '|')];
+    if( e2 =='z')
+        steps = single;
+    else
+        s1 = SReq( e1, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundVal, roundMethod);
+        s2 = SReq( e2, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundVal, roundMethod);
+        steps = strcat(single, s1, s2);
+        return;
+        [~,sz1] = size(s1);
+        [~,sz2] = size(s2);
+        steps = zeros(1,sz1+sz2);
+        for i=1:sz1
+            steps(i)=s1(i);
+        end
+        for i=1:sz2
+            steps(i+sz1) = s2(i);
+        end
+    end
+end
+
+function [eq1, eq2] = breakDown(eqq)
+    [~,sz] = size(eqq);
+    if(eqq(1) == '(')
+        v = 0;     
+        for i=1:sz
+            if(eqq(i)=='(')
+                v = v-1;
+            end
+            if(eqq(i)==')')
+                v = v +1 ;
+            end
+            if(v == 0)
+                eq1 = eqq(1,[2:i-1]);
+                eq2 = eqq(1,[i+2:sz]);
+                return;
+            end
+        end
+    else
+        for i=1:sz
+            if(eqq(i)=='+' || eqq(i)=='-')
+                eq1 = eqq(1,[1:i-1]);
+                eq2 = eqq(1,[i+1:sz]);
+                return;
+            end
+            if(eqq(i)=='*' || eqq(i)=='/' || eqq(i)=='^' || eqq(i)=='(')
+                break;
+            end
+        end
+        for i=1:sz
+            if(eqq(i)=='*' || eqq(i)=='/')
+                eq1 = eqq(1,[1:i-1]);
+                eq2 = eqq(1,[i+1:sz]);
+                return;
+            end
+        end
+        eq1 = eqq;
+        eq2 = 'z';
+    end
+end
+
+function [absoluteError, relativeError, absoluteErrorOfA, relativeErrorOfA, absoluteErrorOfB, relativeErrorOfB, absoluteErrorOfC, relativeErrorOfC, absoluteErrorOfD, relativeErrorOfD, absoluteErrorOfE, relativeErrorOfE, absoluteErrorOfF, relativeErrorOfF , steps ] = MRecursive( equation, a, errorA, b, errorB, c, errorC, d, errorD, e, errorE, f, errorF, roundVal, roundMethod)
+
+F = addError(equation);
     e_a=errorA;
     e_b=errorB;
     e_c=errorC;
@@ -10,7 +78,41 @@ function [absoluteError, relativeError, absoluteErrorOfA, relativeErrorOfA, abso
    
     ALL = {'a', 'b', 'c', 'd', 'e', 'f', 'e_a','e_b','e_c','e_d','e_e','e_f'};
     RF = valueExcept(F,  a,b,c,d,e,f, e_a ,e_b,e_c,e_d,e_e,e_f, ALL);
+    if isnumeric(RF) 
+        for i=1:64
+            z_a = 1;
+            z_b = 1;
+            z_c = 1;
+            z_d = 1;
+            z_e = 1;
+            z_f = 1; 
+            if( mod (i / 2^0, 2) == 1)
+                z_a = -1 ; 
+            end
+            if( mod (i / 2^1, 2) == 1)
+                z_b = -1 ; 
+            end
+            if( mod (i / 2^2, 2) == 1)
+                z_c = -1 ; 
+            end
+            if( mod (i / 2^3, 2) == 1)
+                z_d = -1 ; 
+            end
+            if( mod (i / 2^4, 2) == 1)
+                z_e = -1 ; 
+            end
+            if( mod (i / 2^5, 2) == 1)
+                z_f = -1 ; 
+            end
+            Temp = valueExcept(F,  a,b,c,d,e,f, z_a*e_a ,z_b*e_b,z_c*e_c,z_d*e_d,z_e*e_e,z_f*e_f, ALL);
+            if( Temp > RF ) 
+                RF = Temp; 
+            end
+        end
+    end
+    
     EF = valueExcept(F,  a,b,c,d,e,f,  0 , 0 , 0 , 0 , 0 , 0 , ALL);
+    
     absoluteErrorOfA = abs(valueExcept(F,  a,b,c,d,e,f,  0 ,e_b,e_c,e_d,e_e,e_f, ALL)-RF);
     absoluteErrorOfB = abs(valueExcept(F,  a,b,c,d,e,f, e_a, 0 ,e_c,e_d,e_e,e_f, ALL)-RF);
     absoluteErrorOfC = abs(valueExcept(F,  a,b,c,d,e,f, e_a,e_b, 0 ,e_d,e_e,e_f, ALL)-RF);
@@ -42,6 +144,33 @@ function [absoluteError, relativeError, absoluteErrorOfA, relativeErrorOfA, abso
     
     absoluteError = myRound(absoluteError , roundVal, roundMethod);
     relativeError = myRound(relativeError , roundVal, roundMethod);
+    
+    
+    absoluteErrorOfA = makeNormalNum(absoluteErrorOfA);
+    absoluteErrorOfB = makeNormalNum(absoluteErrorOfB);
+    absoluteErrorOfC = makeNormalNum(absoluteErrorOfC);
+    absoluteErrorOfD = makeNormalNum(absoluteErrorOfD);
+    absoluteErrorOfE = makeNormalNum(absoluteErrorOfE);
+    absoluteErrorOfF = makeNormalNum(absoluteErrorOfF);
+    
+    relativeErrorOfA = makeNormalNum(relativeErrorOfA);
+    relativeErrorOfB = makeNormalNum(relativeErrorOfB);
+    relativeErrorOfC = makeNormalNum(relativeErrorOfC);
+    relativeErrorOfD = makeNormalNum(relativeErrorOfD);
+    relativeErrorOfE = makeNormalNum(relativeErrorOfE);
+    relativeErrorOfF = makeNormalNum(relativeErrorOfF);
+    
+    absoluteError = makeNormalNum(absoluteError);
+    relativeError = makeNormalNum(relativeError);
+    
+end
+
+function OUT = makeNormalNum(IN)
+    if isnumeric(IN) 
+        OUT = num2str(IN);
+    else 
+        OUT = char(IN + 0.0);
+    end
 end
 
 function A = myRound(Val, R , M)

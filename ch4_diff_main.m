@@ -1,4 +1,4 @@
-﻿function goosale = ch4_diff_main(f, x, deg, oh, h, mantissa)
+function goosale = ch4_diff_main(f, x, deg, oh, h, mantissa)
 
 old = digits;
 digits(mantissa);

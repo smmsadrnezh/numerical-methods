@@ -1,4 +1,4 @@
-﻿function goosale = ch4_int_customsimp(f, a, b, h, mantissa)
+function goosale = ch4_int_customsimp(f, a, b, h, mantissa)
 
 n = round(((b-a)/h) + 1);
 

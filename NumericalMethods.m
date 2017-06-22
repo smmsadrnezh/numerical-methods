@@ -22,7 +22,7 @@ function varargout = NumericalMethods(varargin)
 
 % Edit the above text to modify the response to help NumericalMethods
 
-% Last Modified by GUIDE v2.5 20-Jun-2017 12:41:26
+% Last Modified by GUIDE v2.5 22-Jun-2017 08:32:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1831,20 +1831,21 @@ edit16=str2num(get(handles.edit16, 'string'));
 
 switch get(get(handles.uipanel12,'SelectedObject'),'String')
             case 'Fixed Point'
-
+res = fixedPoint(edit23 , edit20 , edit21 , edit22 )
             case 'NewtonRaphson'
-
+res = NewtonRaphson(edit16,edit13,edit14)
             case 'Bisection'
-
+res = bisection(edit4,edit1,edit2,edit3)
             case 'Secant'
-
+res = secant(edit4,edit1,edit2,edit3)
             case 'False Position'
-
+res = falsePos(edit4,edit1,edit2,edit3)
             case 'Generalized NewtonRaphson'
+res = generalized_NewtonRaphson(edit27,edit24,edit25)
+
 end
 
-set(handles.edit8, 'string', char(edit13));
-
+set(handles.edit8, 'string', res);
 
 % --- Executes when selected object is changed in uipanel33.
 function uipanel33_SelectionChangeFcn(hObject, eventdata, handles)
@@ -1856,41 +1857,51 @@ function uipanel33_SelectionChangeFcn(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 switch get(get(handles.uipanel33,'SelectedObject'),'String')
             case '1'
-                set(handles.uipanel31,'visible','on')
+                set(handles.uipanel31,'visible','off')
                 set(handles.uipanel34,'visible','off')
                 set(handles.uipanel36,'visible','off')
-                
+                set(handles.uipanel90,'visible','off')
+                set(handles.uipanel88,'visible','on')
+               
                 set(handles.uipanel37,'visible','off')
                 set(handles.uipanel35,'visible','off')
                 set(handles.uipanel32,'visible','on')
             case '2'
-                set(handles.uipanel31,'visible','on')
+                set(handles.uipanel31,'visible','off')
                 set(handles.uipanel34,'visible','off')
                 set(handles.uipanel36,'visible','off')
+                set(handles.uipanel90,'visible','off')
+                set(handles.uipanel88,'visible','on')
                 
                 set(handles.uipanel37,'visible','off')
                 set(handles.uipanel35,'visible','off')
                 set(handles.uipanel32,'visible','on')
             case '3'
-                set(handles.uipanel31,'visible','on')
+                set(handles.uipanel31,'visible','off')
                 set(handles.uipanel34,'visible','off')
                 set(handles.uipanel36,'visible','off')
+                set(handles.uipanel90,'visible','off')
+                set(handles.uipanel88,'visible','on')
                 
                 set(handles.uipanel37,'visible','off')
                 set(handles.uipanel35,'visible','off')
                 set(handles.uipanel32,'visible','on')
             case '4'
-                set(handles.uipanel31,'visible','on')
+                set(handles.uipanel31,'visible','off')
                 set(handles.uipanel34,'visible','off')
                 set(handles.uipanel36,'visible','off')
+                set(handles.uipanel90,'visible','off')
+                set(handles.uipanel88,'visible','on')
                 
                 set(handles.uipanel37,'visible','off')
                 set(handles.uipanel35,'visible','off')
                 set(handles.uipanel32,'visible','on')
             case '5'
                 set(handles.uipanel31,'visible','off')
-                set(handles.uipanel34,'visible','on')
+                set(handles.uipanel34,'visible','off')
                 set(handles.uipanel36,'visible','off')
+                set(handles.uipanel90,'visible','on')
+                set(handles.uipanel88,'visible','off')
                 
                 set(handles.uipanel37,'visible','off')
                 set(handles.uipanel35,'visible','on')
@@ -1898,7 +1909,9 @@ switch get(get(handles.uipanel33,'SelectedObject'),'String')
             case 'All'
                 set(handles.uipanel31,'visible','off')
                 set(handles.uipanel34,'visible','off')
-                set(handles.uipanel36,'visible','on')
+                set(handles.uipanel36,'visible','off')
+                set(handles.uipanel90,'visible','on')
+                set(handles.uipanel88,'visible','off')
                 
                 set(handles.uipanel37,'visible','on')
                 set(handles.uipanel35,'visible','off')
@@ -1906,7 +1919,9 @@ switch get(get(handles.uipanel33,'SelectedObject'),'String')
             case 'Lagrange'
                 set(handles.uipanel31,'visible','off')
                 set(handles.uipanel34,'visible','off')
-                set(handles.uipanel36,'visible','on')
+                set(handles.uipanel36,'visible','off')
+                set(handles.uipanel90,'visible','on')
+                set(handles.uipanel88,'visible','off')
                 
                 set(handles.uipanel37,'visible','on')
                 set(handles.uipanel35,'visible','off')
@@ -1915,6 +1930,8 @@ switch get(get(handles.uipanel33,'SelectedObject'),'String')
                 set(handles.uipanel31,'visible','off')
                 set(handles.uipanel34,'visible','off')
                 set(handles.uipanel36,'visible','on')
+                set(handles.uipanel90,'visible','off')
+                set(handles.uipanel88,'visible','off')
                 
                 set(handles.uipanel37,'visible','on')
                 set(handles.uipanel35,'visible','off')
@@ -1922,6 +1939,8 @@ switch get(get(handles.uipanel33,'SelectedObject'),'String')
             case 'Forward, Backward & Central Diff'
                 set(handles.uipanel31,'visible','off')
                 set(handles.uipanel34,'visible','off')
+                set(handles.uipanel90,'visible','off')
+                set(handles.uipanel88,'visible','off')
                 set(handles.uipanel36,'visible','on')
                 
                 set(handles.uipanel37,'visible','on')
@@ -1976,6 +1995,19 @@ edit95=str2num(get(handles.edit95, 'string'));
 edit96=str2num(get(handles.edit96, 'string'));
 edit97=str2num(get(handles.edit97, 'string'));
 
+% Part 3
+edit223=str2num(get(handles.edit223, 'string'));
+edit220=str2num(get(handles.edit220, 'string'));
+edit221=str2num(get(handles.edit221, 'string'));
+edit222=str2num(get(handles.edit222, 'string'));
+edit224=str2num(get(handles.edit224, 'string'));
+
+% Part 3
+edit231=str2num(get(handles.edit231, 'string'));
+edit228=str2num(get(handles.edit228, 'string'));
+edit229=str2num(get(handles.edit229, 'string'));
+edit230=str2num(get(handles.edit230, 'string'));
+
 switch get(get(handles.uipanel33,'SelectedObject'),'String')
             case '1'
                 [edit98,edit99,edit100] = ch2_curve_fitting_1(edit223, edit220, edit221, edit224, edit222)
@@ -2003,14 +2035,6 @@ switch get(get(handles.uipanel33,'SelectedObject'),'String')
                 set(handles.edit98, 'string', edit98);
                 set(handles.edit99, 'string', edit99);
                 set(handles.edit100, 'string', edit100);
-            case 'All'
-
-            case 'Lagrange'
-
-            case 'Newton Divided Difference'
-
-            case 'Forward, Backward & Central Diff'
-
             otherwise, res = '';
 end
 
@@ -2156,8 +2180,49 @@ end
 function pushbutton16_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton16 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+% handlesedit109=str2num(get(handles.edit109, 'string'));
+edit110=str2num(get(handles.edit110, 'string'));
+edit112=str2num(get(handles.edit112, 'string'));
+edit109=str2num(get(handles.edit109, 'string'));
 
+% Part 2
+edit101=str2num(get(handles.edit101, 'string'));
+edit102=str2num(get(handles.edit102, 'string'));
+edit103=str2num(get(handles.edit103, 'string'));
+edit104=str2num(get(handles.edit104, 'string'));
+edit105=str2num(get(handles.edit105, 'string'));
+
+% Part 3
+edit94=str2num(get(handles.edit94, 'string'));
+edit95=str2num(get(handles.edit95, 'string'));
+edit96=str2num(get(handles.edit96, 'string'));
+edit97=str2num(get(handles.edit97, 'string'));
+
+% Part 3
+edit223=str2num(get(handles.edit223, 'string'));
+edit220=str2num(get(handles.edit220, 'string'));
+edit221=str2num(get(handles.edit221, 'string'));
+edit222=str2num(get(handles.edit222, 'string'));
+edit224=str2num(get(handles.edit224, 'string'));
+
+% Part 3
+edit231=str2num(get(handles.edit231, 'string'));
+edit228=str2num(get(handles.edit228, 'string'));
+edit229=str2num(get(handles.edit229, 'string'));
+edit230=str2num(get(handles.edit230, 'string'));
+
+switch get(get(handles.uipanel33,'SelectedObject'),'String')
+            case 'All'
+                    ch2_curve_fitting_all(edit231, edit228, edit229, edit230)
+            case 'Lagrange'
+                    res = ch2_intp_lagrange_method(edit231,edit228, edit229, edit230)
+                    set(handles.edit238, 'string', res);
+            case 'Newton Divided Difference'
+                    res = ch2_intp_divided_differences(edit231,edit228, edit229, edit230)
+            case 'Forward, Backward & Central Diff'
+                    [dFBackward, dFCentral, dFForward] = ch2_intp_newton_crbkfw(edit112, edit109, edit110)
+            otherwise, res = '';
+end
 
 
 function edit109_Callback(hObject, eventdata, handles)
@@ -2737,21 +2802,21 @@ edit132=str2num(get(handles.edit132, 'string'));
 
 switch get(get(handles.uipanel38,'SelectedObject'),'String')
             case 'Trapezodial'
-
+            res=ch4_int_trapezoidal(edit131, edit128, edit129, edit130, edit132)
             case 'Simpson'
-
+            res=ch4_int_simpson(edit131, edit128, edit129, edit130, edit132)
             case 'Romberg'
-
+            res=ch4_int_romberg(edit131, edit128, edit129, edit130, edit132)
             case 'Gaussleg'
-
+            res=ch4_int_gaussleg(edit131, edit128, edit129, edit130, edit132)
             case 'Diff Main'
-
+            res=ch4_diff_diff_main(edit146, edit143, edit144, edit145, edit147, edit148)
             case 'Diff Richardson'
-
+            res=ch4_diff_richardson(edit146, edit143, edit144, edit145, edit147, edit148)
             otherwise, res = '';
 end
+                set(handles.text148, 'String', res);
 
-set(handles.edit8, 'string', char(edit13));
 
 
 function edit128_Callback(hObject, eventdata, handles)
@@ -3244,6 +3309,29 @@ function pushbutton22_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton22 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+tf = get(handles.edit170, 'string'); 
+tx0 = str2num(get(handles.edit167, 'string')); 
+ty0 = str2num(get(handles.edit168, 'string')); 
+th = str2num(get(handles.edit169, 'string')); 
+tn = str2num(get(handles.edit172, 'string')); 
+ttn = str2num(get(handles.edit171, 'string')); 
+
+nf = get(handles.edit165, 'string'); 
+nx0 = str2num(get(handles.edit162, 'string')); 
+ny0 = str2num(get(handles.edit163, 'string')); 
+nh = str2num(get(handles.edit164, 'string')); 
+nn = str2num(get(handles.edit166, 'string')); 
+
+ef = get(handles.edit176, 'string'); 
+eg = get(handles.edit173, 'string'); 
+ex0 = str2num(get(handles.edit174, 'string')); 
+ey0 = str2num(get(handles.edit175, 'string')); 
+ez0 = str2num(get(handles.edit177, 'string')); 
+eh = str2num(get(handles.edit178, 'string')); 
+en = str2num(get(handles.edit179, 'string')); 
+
+
 % Part 1
 edit162=str2num(get(handles.edit162, 'string'));
 edit163=str2num(get(handles.edit163, 'string'));
@@ -3271,73 +3359,35 @@ edit179=str2num(get(handles.edit179, 'string'));
 
 switch get(get(handles.uipanel40,'SelectedObject'),'String')
             case 'Taylor'
-                set(handles.uipanel61,'visible','on')
-                set(handles.uipanel60,'visible','off')
-                set(handles.uipanel62,'visible','off')
-                
-                set(handles.uipanel63,'visible','on')
-                set(handles.uipanel67,'visible','off')
+                [finalY, Y] = ch5_taylor( tf, tx0, ty0, th, ttn, tn );
+                set(handles.text207, 'String', finalY);
+                set(handles.text213, 'String', Y);
             case 'Euler'
-                set(handles.uipanel61,'visible','off')
-                set(handles.uipanel60,'visible','on')
-                set(handles.uipanel62,'visible','off')
-                
-                set(handles.uipanel63,'visible','on')
-                set(handles.uipanel67,'visible','off')
+                [finalY, Y] = ch5_euler( nf, nx0, ny0, nh, nn);
+                set(handles.text207, 'String', finalY);
+                set(handles.text213, 'String', Y);
             case 'Modified Euler'
-                set(handles.uipanel61,'visible','off')
-                set(handles.uipanel60,'visible','on')
-                set(handles.uipanel62,'visible','off')
-                
-                set(handles.uipanel63,'visible','on')
-                set(handles.uipanel67,'visible','off')
+                [finalY, Y] = ch5_modified_euler( nf, nx0, ny0, nh, nn );
+                set(handles.text207, 'String', finalY);
+                set(handles.text213, 'String', Y);
             case 'Mid Point'
-                set(handles.uipanel61,'visible','off')
-                set(handles.uipanel60,'visible','on')
-                set(handles.uipanel62,'visible','off')
-                
-                set(handles.uipanel63,'visible','on')
-                set(handles.uipanel67,'visible','off')
+                [finalY, Y] = ch5_mid_point( nf, nx0, ny0, nh, nn );
+                set(handles.text207, 'String', finalY);
+                set(handles.text213, 'String', Y);
             case 'Runge Kuttah 3rd order'
-                set(handles.uipanel61,'visible','off')
-                set(handles.uipanel60,'visible','on')
-                set(handles.uipanel62,'visible','off')
-                
-                set(handles.uipanel63,'visible','on')
-                set(handles.uipanel67,'visible','off')
+                [finalY, Y] = ch5_runge_kuttah_3rd_order( nf, nx0, ny0, nh , nn);
+                set(handles.text207, 'String', finalY);
+                set(handles.text213, 'String', Y);
             case 'Runge Kuttah 4th order'
-                set(handles.uipanel61,'visible','off')
-                set(handles.uipanel60,'visible','on')
-                set(handles.uipanel62,'visible','off')
-                
-                set(handles.uipanel63,'visible','on')
-                set(handles.uipanel67,'visible','off')
+                [finalY, Y] = ch5_runge_kuttah_4th_order( nf, nx0, ny0, nh, nn );
+                set(handles.text207, 'String', finalY);
+                set(handles.text213, 'String', Y);
             case 'Adams Moulton'
-                set(handles.uipanel61,'visible','off')
-                set(handles.uipanel60,'visible','on')
-                set(handles.uipanel62,'visible','off')
-                
-                set(handles.uipanel63,'visible','on')
-                set(handles.uipanel67,'visible','off')
-            case 'Euler Differential Equation'
-                set(handles.uipanel61,'visible','off')
-                set(handles.uipanel60,'visible','off')
-                set(handles.uipanel62,'visible','on')
-                
-                set(handles.uipanel63,'visible','off')
-                set(handles.uipanel67,'visible','on')
-            case 'Runge Kutta Diff Equation'
-                set(handles.uipanel61,'visible','off')
-                set(handles.uipanel60,'visible','off')
-                set(handles.uipanel62,'visible','on')
-                
-                set(handles.uipanel63,'visible','off')
-                set(handles.uipanel67,'visible','on')
+                [finalY, Y] = ch5_adams_moulton( nf, nx0, ny0, nh, nn );
+                set(handles.text207, 'String', finalY);
+                set(handles.text213, 'String', Y);
             otherwise, res = '';
 end
-
-set(handles.text207, 'string', char(edit13));
-
 
 function edit167_Callback(hObject, eventdata, handles)
 % hObject    handle to edit167 (see GCBO)
@@ -4789,3 +4839,61 @@ function edit224_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+% CHAPTER 5 RUN PART 2
+% --- Executes on button press in pushbutton34.
+function pushbutton34_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton34 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+tf = get(handles.edit170, 'string'); 
+tx0 = str2num(get(handles.edit167, 'string')); 
+ty0 = str2num(get(handles.edit168, 'string')); 
+th = str2num(get(handles.edit169, 'string')); 
+tn = str2num(get(handles.edit172, 'string')); 
+ttn = str2num(get(handles.edit171, 'string')); 
+
+nf = get(handles.edit165, 'string'); 
+nx0 = str2num(get(handles.edit162, 'string')); 
+ny0 = str2num(get(handles.edit163, 'string')); 
+nh = str2num(get(handles.edit164, 'string')); 
+nn = str2num(get(handles.edit166, 'string')); 
+
+ef = get(handles.edit176, 'string'); 
+eg = get(handles.edit173, 'string'); 
+ex0 = str2num(get(handles.edit174, 'string')); 
+ey0 = str2num(get(handles.edit175, 'string')); 
+ez0 = str2num(get(handles.edit177, 'string')); 
+eh = str2num(get(handles.edit178, 'string')); 
+en = str2num(get(handles.edit179, 'string'));
+
+switch get(get(handles.uipanel40,'SelectedObject'),'String')
+            case 'Euler Differential Equation'
+                [finalY, finalZ, Y, Z] =ch5_euler_differential_equation( ef, eg, ex0, ey0, ez0, eh, en);
+                set(handles.text241, 'String', finalY);
+                set(handles.text243, 'String', Y);
+                set(handles.text239, 'String', Z);
+                set(handles.text237, 'String', finalZ);
+            case 'Runge Kutta Diff Equation'
+                [finalY, finalZ, Y, Z] = ch5_runge_kutta_differential_equation( ef, eg, ex0, ey0, ez0, eh, en);
+                set(handles.text241, 'String', finalY);
+                set(handles.text243, 'String', Y);
+                set(handles.text239, 'String', Z);
+                set(handles.text237, 'String', finalZ);
+            otherwise, res = '';
+end
+
+
+% --- Executes during object creation, after setting all properties.
+function edit238_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit238 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes during object creation, after setting all properties.
+function edit239_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit239 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called

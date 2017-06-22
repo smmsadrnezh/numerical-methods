@@ -1,4 +1,4 @@
-function [ Y ] = ch5_mid_point( f, x0, y0, h, n )
+function [ finalY, Y ] = ch5_mid_point( f, x0, y0, h, n )
    h =  h / n;
     X = x0 + [0:n] * h;
     Y = zeros(size(X));
@@ -7,6 +7,7 @@ function [ Y ] = ch5_mid_point( f, x0, y0, h, n )
     for i = 1:n
         Y(i+1) = ch5_mid_point_one_step(f,X(i),Y(i),h);
     end
+    finalY = Y(n+1);
 end
 
 function [ Y ] = ch5_mid_point_one_step( f, x0, y0, h )

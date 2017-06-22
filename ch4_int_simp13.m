@@ -1,4 +1,4 @@
-﻿function goosale = ch4_int_simp13(f, a, b, h, mantissa)
+function goosale = ch4_int_simp13(f, a, b, h, mantissa)
 
 old = digits;
 digits(mantissa);

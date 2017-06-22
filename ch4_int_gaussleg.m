@@ -1,4 +1,4 @@
-﻿function goosale = ch4_int_gaussleg(f, a, b, h, mantissa)
+function goosale = ch4_int_gaussleg(f, a, b, h, mantissa)
 
 old = digits;
 digits(mantissa);
@@ -11,7 +11,7 @@ n = round(((b-a)/h) + 1);
 fu = zeros(n);
 
 for i= 1:n
-    fu(i) = F(f, xs(i))
+    fu(i) = F(f, xs(i));
 end
 
 goosale = sum(fu.*w)(1);
